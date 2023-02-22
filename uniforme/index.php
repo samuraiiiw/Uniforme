@@ -24,22 +24,7 @@
     <?php require_once "nav.php"; ?>
     
     <div class="row prikaz">
-
-        <div class="kategorije">
-                <h2>Kategorije</h2>
-                <ul>
-                    <li class="li">Bluza</li>
-                    <li class="li"><?php echo "<a href='index.php?naziv=haljina'>Haljina</a>";?></li>  
-                    <li class="li">Kaput</li>
-                    <li class="li">Kombinezon</li>
-                    <li class="li"><?php echo "<a href='index.php?naziv=pantalone'>pantalone</a>"?></li>
-                    <li class="li">Suknja</li>
-                    <li class="li">Majica</li>
-                </ul>
-        </div>
-
-
-        <div id="slike" class="slike col-9 row">
+      <div id="slike" class="slike col-9 row">
             <?php
 
             if(isset($_GET['naziv'])){
@@ -106,7 +91,7 @@
     
 
 
-    <footer>
+    <div class="footer">
         <div class="content">
           <div class="top">
             <div class="logo-details">
@@ -163,7 +148,7 @@
             </span>
           </div>
         </div>
-      </footer>
+      </div>
 </body>
 </html>
 </html>

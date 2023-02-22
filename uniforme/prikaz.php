@@ -59,13 +59,13 @@
                         <div><h2>$naziv</h2></div>
                         
                         <div>
-                        Izaberi veličinu:<br>
-                        <span>$s</span>
-                        <span$m</span>
-                        <span>$l</span>
-                        <span>$xl</span>
-                        <span>$xxl</span>
-                        <span>$xxxl</span>
+                            Izaberi veličinu:<br>
+                            <span>$s</span>
+                            <span$m</span>
+                            <span>$l</span>
+                            <span>$xl</span>
+                            <span>$xxl</span>
+                            <span>$xxxl</span>
                         </div>
                        
                         <div>
