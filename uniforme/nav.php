@@ -1,16 +1,32 @@
-<link rel="stylesheet" href="index.css">
-<h1 id="logo">Six Uniforme</h1>
+<link rel="stylesheet" href="stil.css">
+<h1 class="naslov">SIX UNIFORME</h1>
         
-<div class="nav-box">
-<nav class="row" >
-    <?php echo "<a class='col-3' href='index.php?naziv=katalog'>Zenske Uniforme</a>";?>
-        <a class="col-3" href="">Muske Uniforme</a>
-        <!-- <a class=" col-2   "href="">Prodajna mesta</a> -->
-        <a class="col-3"href="">Kape</a>
-        <a class="col-3"href="">Nesto</a>
+
+<nav >
+    <div class="vrsta">
+        <a href="" class="meni">ZENSKA UNIFORMA</a>
+        <ul class="vrste"><br><br>
+            <li><a href="">Bluze</a></li><br>
+            <li><a href="">Pantalone</a></li><br>
+            <li><a href="">Mantil</a></li><br>
+            <li><a href="">Haljine</a></li><br>
+            <li><a href="">Suknje</a></li><br>
+        </ul>
+    </div>
+    <div class="vrsta">
+        <a href="" class="meni">MUSKA UNIFORMA</a>
+        <ul class="vrste"><br><br>
+            <li><a href="">Bluze</a></li> <br>
+            <li><a href="">Pantalone</a></li><br>
+            <li><a href="">Mantil</a></li><br>
+
+        </ul>
+    </div>
+    <a href="" class="vrsta">KAPE</a>
+    <a href="" class="vrsta">MAJICE</a>
 </nav>
 
-</div>
+
 
     <a href="cart.php" class="cart">
         <h4 >

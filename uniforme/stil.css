@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Judson&family=Montserrat:wght@600&family=Open+Sans:wght@500&family=Raleway&family=Rye&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family: 'Montserrat', cursive;
+  text-decoration:none;
+  list-style: none;
+}
+.naslov{
+  font-family: 'Allerta Stencil', sans-serif;
+  text-align:center;
+  padding:30px 0 30px 0;
+  font-size:3em;
+  letter-spacing:8px; 
+  color:#b94545;
+}
+nav{
+  display:flex;
+  width:100%;
+  justify-content:space-evenly;
+  background-color:#b94545;
+  padding: 20px 0 20px 0;
+  height:100px;
+  text-align: center;
+}
+
+a{
+  text-transform: uppercase;
+  color:white; 
+}
+.vrsta{
+  padding:20px;
+  background:#b94545;
+}
+.vrsta ul{
+  display:none;
+}
+.vrsta:hover > .vrste {
+  display: block;
+}
+
+.vrste{
+  background:#b94545;
+  text-align:left;
+  gap:4px;
+}
+.vrsta a{
+  padding:20px;
+}

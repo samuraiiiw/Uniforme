@@ -1,7 +1,7 @@
 <?php
     require_once "functions.php"; 
 
-    $title = "Viktoria Style";
+    $title = "Six Uniforme";
     $table = 'artikal';
     
     // $haljina= 'haljina';
@@ -17,11 +17,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo "$title";?></title>
     <link rel="stylesheet" href="stil.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-   
 
 </head>
 <body>
@@ -30,8 +25,8 @@
     
     <div class="row prikaz">
 
-        <div class="kategorije col-3">
-                <h2 style="margin-left: 10%;">Kategorije</h2>
+        <div class="kategorije">
+                <h2>Kategorije</h2>
                 <ul>
                     <li class="li">Bluza</li>
                     <li class="li"><?php echo "<a href='index.php?naziv=haljina'>Haljina</a>";?></li>  
