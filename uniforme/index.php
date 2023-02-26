@@ -16,13 +16,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo "$title";?></title>
-    <link rel="stylesheet" href="stil.css">
-
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <body>
 
     <?php require_once "nav.php"; ?>
-    
+
     <div>
       <?php
         if(isset($_GET['vrsta'])){
@@ -30,20 +31,22 @@
           
           $sql= "SELECT slika.put as put,
                         artikal.id as id,
-                        vrsta.naziv
+                        artikal.naziv as naziv,
+                        artikal.cena as cena
                 FROM slika
                 INNER JOIN artikal on slika.artikal_id = artikal.id
                 INNER JOIN vrsta on vrsta.id = artikal.vrsta_id
-                WHERE vrsta.naziv = '{$vrsta}'";
+                WHERE vrsta.naziv = '{$vrsta}';";
 
           $result = $mysqli->query($sql) or die($mysqli->error);
 
           while($row = $result->fetch_assoc()){
-            echo "<a href='prikaz.php?id{$row['id']}'><img src='{$row['put']}' alt=''></a>";
+            echo "<div>
+                    <a href='prikaz.php?id={$row['id']}'><img src='{$row['put']}' alt=''></a>
+                    <p>{$row['naziv']}</p>
+                    <p>{$row['cena']}</p>
+                  </div>";
           }
-
-          echo "ocigledno ne radu";
-
 
         } else {
           echo  "<a href='index.php?vrsta=bluze'><img src='artikli/artikalM1' alt=''></a>";
@@ -112,6 +115,9 @@
           </div>
         </div>
       </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 </html>
 </html>
