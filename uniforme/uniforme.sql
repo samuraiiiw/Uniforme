@@ -46,9 +46,7 @@ CREATE TABLE IF NOT EXISTS `artikal` (
 -- Dumping data for table `artikal`
 --
 
-INSERT INTO `artikal` (`id`, `sifra`, `naziv`, `cena`, `velicine_id`, `vrsta_id`, `pol_id`) VALUES
-(10, 1000, 'bluza', 10000, 2, 3, 1),
-(11, 1000, 'bluza', 10000, 2, 3, 1);
+
 
 -- --------------------------------------------------------
 
@@ -107,19 +105,7 @@ CREATE TABLE IF NOT EXISTS `pol` (
 -- Dumping data for table `pol`
 --
 
-INSERT INTO `pol` (`id`, `naziv`) VALUES
-(1, 'musko'),
-(2, 'zensko'),
-(3, 'uniseks'),
-(4, 'musko'),
-(5, 'zensko'),
-(6, 'uniseks'),
-(7, 'musko'),
-(8, 'zensko'),
-(9, 'uniseks'),
-(10, 'musko'),
-(11, 'zensko'),
-(12, 'uniseks');
+
 
 -- --------------------------------------------------------
 
@@ -140,9 +126,7 @@ CREATE TABLE IF NOT EXISTS `slika` (
 -- Dumping data for table `slika`
 --
 
-INSERT INTO `slika` (`id`, `artikal_id`, `put`) VALUES
-(1, 1, 'artikli/artikal2.jpg'),
-(2, 1, 'artikli/artikal3.jpg');
+
 
 -- --------------------------------------------------------
 
@@ -161,31 +145,7 @@ CREATE TABLE IF NOT EXISTS `velicine` (
 -- Dumping data for table `velicine`
 --
 
-INSERT INTO `velicine` (`id`, `velicina`) VALUES
-(1, 'S'),
-(2, 'M'),
-(3, 'L'),
-(4, 'XL'),
-(5, 'XXL'),
-(6, 'XXXL'),
-(7, 'S'),
-(8, 'M'),
-(9, 'L'),
-(10, 'XL'),
-(11, 'XXL'),
-(12, 'XXXL'),
-(13, 'S'),
-(14, 'M'),
-(15, 'L'),
-(16, 'XL'),
-(17, 'XXL'),
-(18, 'XXXL'),
-(19, 'S'),
-(20, 'M'),
-(21, 'L'),
-(22, 'XL'),
-(23, 'XXL'),
-(24, 'XXXL');
+
 
 -- --------------------------------------------------------
 
@@ -203,36 +163,6 @@ CREATE TABLE IF NOT EXISTS `vrsta` (
 --
 -- Dumping data for table `vrsta`
 --
-
-INSERT INTO `vrsta` (`id`, `naziv`) VALUES
-(1, 'kapa'),
-(2, 'majica'),
-(3, 'bluza'),
-(4, 'pantalone'),
-(5, 'mantil'),
-(6, 'haljina'),
-(7, 'suknja'),
-(8, 'kapa'),
-(9, 'majica'),
-(10, 'bluza'),
-(11, 'pantalone'),
-(12, 'mantil'),
-(13, 'haljina'),
-(14, 'suknja'),
-(15, 'kapa'),
-(16, 'majica'),
-(17, 'bluza'),
-(18, 'pantalone'),
-(19, 'mantil'),
-(20, 'haljina'),
-(21, 'suknja'),
-(22, 'kapa'),
-(23, 'majica'),
-(24, 'bluza'),
-(25, 'pantalone'),
-(26, 'mantil'),
-(27, 'haljina'),
-(28, 'suknja');
 
 --
 -- Constraints for dumped tables

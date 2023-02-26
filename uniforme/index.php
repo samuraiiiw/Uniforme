@@ -23,72 +23,8 @@
 
     <?php require_once "nav.php"; ?>
     
-    <div class="row prikaz">
-      <div id="slike" class="slike col-9 row">
-            <?php
 
-            if(isset($_GET['naziv'])){
-                $naziv=$_GET['naziv'];   
-
-                        //filtriranje
-
-                        if($naziv !='katalog'){
-                            $vrsta = $naziv;
-                        } else {
-                                $vrsta = 'haljina';
-                            }
-
-            
-                        //izbacivanje slika
-        
-                        $sql="SELECT * FROM $table WHERE vrsta='{$vrsta}'";
- 
-                        $result = $mysqli->query($sql) or die($mysqli->error);
-                        
-                        while ($row = $result->fetch_assoc()){
-                            
-                            if($row['s'] == 0 && $row['l'] ==0 && $row['xl']==0 && $row['xxl'] ==0 && $row['xxxl']==0) continue;  
-        
-                            echo  "<div class='oneimage col-4'>
-                                        <a href='prikaz.php?id={$row['id']}' >
-                                            <img src ='{$row['slika']}' >
-                                            <p class='nazivArtikla'>{$row['naziv']}<br>
-                                                                    {$row['cena']} RSD</p>
-                                        </a>
-                                     </div>";
-                        }
-                        
-                } 
-                else
-                { 
-                    $vrsta= 'haljina';
-
-                    $sql="SELECT * FROM $table WHERE vrsta='{$vrsta}'";
- 
-                        $result = $mysqli->query($sql) or die($mysqli->error);
-                        
-                        while ($row = $result->fetch_assoc()){
-                            
-                            if($row['s'] == 0 && $row['l'] ==0 && $row['xl']==0 && $row['xxl'] ==0 && $row['xxxl']==0) continue;  
-        
-                            echo  "<div class='oneimage col-4'>
-                                        <a href='prikaz.php?id={$row['id']}' >
-                                            <img src ='{$row['slika']}' >
-                                            <p class='nazivArtikla'>{$row['naziv']}</p>
-                                        </a>
-                                     </div>";
-                        }
-                }
-
-            ?>
-
-        </div>
-
-        
-        
-    </div>
-
-    
+      
 
 
     <div class="footer">
