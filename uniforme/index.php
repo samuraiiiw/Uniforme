@@ -23,8 +23,35 @@
 
     <?php require_once "nav.php"; ?>
     
+    <div>
+      <?php
+        if(isset($_GET['vrsta'])){
+          $vrsta = $_GET['vrsta'];
+          
+          $sql= "SELECT slika.put as put,
+                        artikal.id as id,
+                        vrsta.naziv
+                FROM slika
+                INNER JOIN artikal on slika.artikal_id = artikal.id
+                INNER JOIN vrsta on vrsta.id = artikal.vrsta_id
+                WHERE vrsta.naziv = '{$vrsta}'";
 
-      
+          $result = $mysqli->query($sql) or die($mysqli->error);
+
+          while($row = $result->fetch_assoc()){
+            echo "<a href='prikaz.php?id{$row['id']}'><img src='{$row['put']}' alt=''></a>";
+          }
+
+          echo "ocigledno ne radu";
+
+
+        } else {
+          echo  "<a href='index.php?vrsta=bluze'><img src='artikli/artikalM1' alt=''></a>";
+          echo  "<a href='index.php?vrsta=bluze'><img src='artikli/artikal1' alt=''></a>";
+        }
+      ?>
+    </div>
+    
 
 
     <div class="footer">

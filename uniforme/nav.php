@@ -6,19 +6,19 @@
     <div class="vrsta">
         <a href="" class="meni">ZENSKA UNIFORMA</a>
         <ul class="vrste"><br><br>
-            <li><a href="">Bluze</a></li><br>
-            <li><a href="">Pantalone</a></li><br>
-            <li><a href="">Mantil</a></li><br>
-            <li><a href="">Haljine</a></li><br>
-            <li><a href="">Suknje</a></li><br>
+            <li><a href="index.php?vrsta=bluze">Bluze</a></li><br>
+            <li><a href="index.php?vrsta=pantalone">Pantalone</a></li><br>
+            <li><a href="index.php?vrsta=mantil">Mantil</a></li><br>
+            <li><a href="index.php?vrsta=haljine">Haljine</a></li><br>
+            <li><a href="index.php?vrsta=suknje">Suknje</a></li><br>
         </ul>
     </div>
     <div class="vrsta">
         <a href="" class="meni">MUSKA UNIFORMA</a>
         <ul class="vrste"><br><br>
-            <li><a href="">Bluze</a></li> <br>
-            <li><a href="">Pantalone</a></li><br>
-            <li><a href="">Mantil</a></li><br>
+            <li><a href="index.php?vrsta=bluzeM">Bluze</a></li> <br>
+            <li><a href="index.php?vrsta=pantaloneM">Pantalone</a></li><br>
+            <li><a href="index.php?vrsta=haljinaM">Mantil</a></li><br>
 
         </ul>
     </div>
