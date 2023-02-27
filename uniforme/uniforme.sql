@@ -7,183 +7,170 @@
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema uniforme
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema uniforme
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `uniforme` DEFAULT CHARACTER SET utf8 ;
+USE `uniforme` ;
+
+-- -----------------------------------------------------
+-- Table `uniforme`.`pol`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `uniforme`.`pol` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `naziv` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = utf8;
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+-- -----------------------------------------------------
+-- Table `uniforme`.`vrsta`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `uniforme`.`vrsta` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `naziv` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 29
+DEFAULT CHARACTER SET = utf8;
 
---
--- Database: `uniforme`
---
 
--- --------------------------------------------------------
-
---
--- Table structure for table `artikal`
---
-
-DROP TABLE IF EXISTS `artikal`;
-CREATE TABLE IF NOT EXISTS `artikal` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sifra` int(11) NOT NULL,
-  `naziv` varchar(150) NOT NULL,
-  `cena` int(11) NOT NULL,
-  `velicine_id` int(11) NOT NULL,
-  `vrsta_id` int(11) NOT NULL,
-  `pol_id` int(11) NOT NULL,
+-- -----------------------------------------------------
+-- Table `uniforme`.`artikal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `uniforme`.`artikal` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `sifra` INT(11) NOT NULL,
+  `naziv` VARCHAR(150) NOT NULL,
+  `cena` INT(11) NOT NULL,
+  `vrsta_id` INT(11) NOT NULL,
+  `pol_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_artikal_velicine1_idx` (`velicine_id`),
-  KEY `fk_artikal_vrsta1_idx` (`vrsta_id`),
-  KEY `fk_artikal_pol1_idx` (`pol_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  INDEX `fk_artikal_vrsta1_idx` (`vrsta_id` ASC) ,
+  INDEX `fk_artikal_pol1_idx` (`pol_id` ASC) ,
+  CONSTRAINT `fk_artikal_pol1`
+    FOREIGN KEY (`pol_id`)
+    REFERENCES `uniforme`.`pol` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_artikal_vrsta1`
+    FOREIGN KEY (`vrsta_id`)
+    REFERENCES `uniforme`.`vrsta` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 12
+DEFAULT CHARACTER SET = utf8;
 
---
--- Dumping data for table `artikal`
---
+
+-- -----------------------------------------------------
+-- Table `uniforme`.`kupac`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `uniforme`.`kupac` (
+  `ime` VARCHAR(45) NOT NULL,
+  `prezime` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(70) NOT NULL,
+  `telefon` VARCHAR(45) NOT NULL,
+  `grad` VARCHAR(45) NOT NULL,
+  `postanski broj` INT(11) NOT NULL,
+  `ulica` VARCHAR(255) NOT NULL,
+  `broj` VARCHAR(15) NOT NULL,
+  `sprat` INT(11) NULL DEFAULT NULL,
+  `broj_stana` INT(11) NULL DEFAULT NULL,
+  `interfon` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`email`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kupac`
---
-
-DROP TABLE IF EXISTS `kupac`;
-CREATE TABLE IF NOT EXISTS `kupac` (
-  `ime` varchar(45) NOT NULL,
-  `prezime` varchar(45) NOT NULL,
-  `email` varchar(70) NOT NULL,
-  `telefon` varchar(45) NOT NULL,
-  `grad` varchar(45) NOT NULL,
-  `postanski broj` int(11) NOT NULL,
-  `ulica` varchar(255) NOT NULL,
-  `broj` varchar(15) NOT NULL,
-  `sprat` int(11) DEFAULT NULL,
-  `broj_stana` int(11) DEFAULT NULL,
-  `interfon` int(11) DEFAULT NULL,
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kupovina`
---
-
-DROP TABLE IF EXISTS `kupovina`;
-CREATE TABLE IF NOT EXISTS `kupovina` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `artikal_id` int(11) NOT NULL,
-  `kupac_email` varchar(70) NOT NULL,
-  `datum` date NOT NULL,
-  `kolicina` int(11) NOT NULL,
+-- -----------------------------------------------------
+-- Table `uniforme`.`kupovina`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `uniforme`.`kupovina` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `artikal_id` INT(11) NOT NULL,
+  `kupac_email` VARCHAR(70) NOT NULL,
+  `datum` DATE NOT NULL,
+  `kolicina` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_artikal_has_kupac_kupac1_idx` (`kupac_email`),
-  KEY `fk_artikal_has_kupac_artikal_idx` (`artikal_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pol`
---
-
-DROP TABLE IF EXISTS `pol`;
-CREATE TABLE IF NOT EXISTS `pol` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `naziv` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `pol`
---
+  INDEX `fk_artikal_has_kupac_kupac1_idx` (`kupac_email` ASC) ,
+  INDEX `fk_artikal_has_kupac_artikal_idx` (`artikal_id` ASC) ,
+  CONSTRAINT `fk_artikal_has_kupac_artikal`
+    FOREIGN KEY (`artikal_id`)
+    REFERENCES `uniforme`.`artikal` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_artikal_has_kupac_kupac1`
+    FOREIGN KEY (`kupac_email`)
+    REFERENCES `uniforme`.`kupac` (`email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `slika`
---
-
-DROP TABLE IF EXISTS `slika`;
-CREATE TABLE IF NOT EXISTS `slika` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `artikal_id` int(11) NOT NULL,
-  `put` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`,`artikal_id`),
-  KEY `artikal_id` (`artikal_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `slika`
---
+-- -----------------------------------------------------
+-- Table `uniforme`.`slika`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `uniforme`.`slika` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `put` VARCHAR(255) NOT NULL,
+  `artikal_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`, `artikal_id`),
+  INDEX `fk_slika_artikal1_idx` (`artikal_id` ASC) )
+ENGINE = MyISAM
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8;
 
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `velicine`
---
-
-DROP TABLE IF EXISTS `velicine`;
-CREATE TABLE IF NOT EXISTS `velicine` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `velicina` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `velicine`
---
+-- -----------------------------------------------------
+-- Table `uniforme`.`velicine`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `uniforme`.`velicine` (
+  `size` VARCHAR(5) NOT NULL,
+  PRIMARY KEY (`size`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
+-- -----------------------------------------------------
+-- Table `uniforme`.`dostupne_velicine`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `uniforme`.`dostupne_velicine` (
+  `artikal_id` INT(11) NOT NULL,
+  `velicine_id` VARCHAR(5) NOT NULL,
+  PRIMARY KEY (`artikal_id`, `velicine_id`),
+  INDEX `fk_artikal_has_velicine_velicine1_idx` (`velicine_id` ASC) ,
+  INDEX `fk_artikal_has_velicine_artikal1_idx` (`artikal_id` ASC) ,
+  CONSTRAINT `fk_artikal_has_velicine_artikal1`
+    FOREIGN KEY (`artikal_id`)
+    REFERENCES `uniforme`.`artikal` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_artikal_has_velicine_velicine1`
+    FOREIGN KEY (`velicine_id`)
+    REFERENCES `uniforme`.`velicine` (`size`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `vrsta`
---
-
-DROP TABLE IF EXISTS `vrsta`;
-CREATE TABLE IF NOT EXISTS `vrsta` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `naziv` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `vrsta`
---
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `artikal`
---
-ALTER TABLE `artikal`
-  ADD CONSTRAINT `fk_artikal_pol1` FOREIGN KEY (`pol_id`) REFERENCES `pol` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_artikal_velicine1` FOREIGN KEY (`velicine_id`) REFERENCES `velicine` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_artikal_vrsta1` FOREIGN KEY (`vrsta_id`) REFERENCES `vrsta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `kupovina`
---
-ALTER TABLE `kupovina`
-  ADD CONSTRAINT `fk_artikal_has_kupac_artikal` FOREIGN KEY (`artikal_id`) REFERENCES `artikal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_artikal_has_kupac_kupac1` FOREIGN KEY (`kupac_email`) REFERENCES `kupac` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
