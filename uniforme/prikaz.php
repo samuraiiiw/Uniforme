@@ -37,37 +37,114 @@
         $row = $result->fetch_assoc();
         $naziv = $row['naziv'];   
         $cena = $row['cena'];
+        $velicina = $row['velicine_id'];
+    
+   
         
-        // if($row['s']!=0){
+        // if($velicina == 1){
+        //     $s = "S";
+        // } else $s = NULL;
+        // if($velicina == 2 ){
+        //     $m = "M";
+        // } else $s = NULL;
+        // if($velicina == 3 ){
+        //     $l = "L";
+        // } else $s = NULL;
+        // if($velicina == 4 ){
+        //     $xl = "XL";
+        // } else $s = NULL;
+
+        // if($row['S']!=0){
         //     $s="S";
         // }else $s= NULL;
-        // if($row['m']!=0){
+        // if($row['M']!=0){
         //     $m="M";
         // }else $m= NULL;
-        // if($row['l']!=0){
+        // if($row['L']!=0){
         //     $l="L";
         // }else $l= NULL;
-        // if($row['xl']!=0){
+        // if($row['XL']!=0){
         //     $xl="XL";
         // } else $xl= NULL;
-        // if($row['xxl']!=0){
-        //     $xxl="XXL";
-        // } else $xxl= NULL;      ne brisite ovo
-        // if($row['xxxl']!=0){
-        //     $xxxl="XXL";
-        // }else $xxxl= NULL;
-        
-            echo
-                "<div>
-                    <img src='{$row['put']}' alt=''>
-                    <p>$naziv</p>
-                    <p>$cena</p>
-                    <button type='button' class='btn-prikaz' onclick='openPopup()' name='add'>Dodaj u korpu</button>
-                    <input type='hidden' name= 'artikal_id' value='$artikal_id'>
-                </div>";
 
-    ?>
-    
+        ?>     
+        
+        <form action='' method='post'>
+                 
+            <!-- div za sliku -->
+            <div>
+                <?php echo "<img src='{$row['put']}' alt=''>"; ?>
+            </div>
+
+            <!-- div za info -->
+            <div>
+                <?php
+                echo "<h2>$naziv</h2>";
+                echo "<label for=''>Izaberi velicinu</label><br>";                  
+
+                if($velicina == 1){
+                    echo "<input type='radio' name='velicina' id=''>S";
+                }
+                if($velicina == 2){
+                    echo "<input type='radio' name='velicina' id=''>M";
+                }
+                if($velicina == 3){
+                    echo "<input type='radio' name='velicina' id=''>L";
+                }
+                if($velicina == 4){
+                    echo "<input type='radio' name='velicina' id=''>XL";
+                }
+                        
+                echo "<br><label>Cena: </label>
+                       <p>$cena</p>";
+                ?>
+                <button type='button' class='btn-prikaz' onclick='openPopup()' name='dodaj_u_korpu'>Dodaj u korpu</button>
+                <input type='hidden' name= 'artikal_id' value='$artikal_id'>
+            </div>     
+        </form>
+                
+
+
+    <div>
+        <?php
+
+            if(isset($_POST['dodaj_u_korpu'])){
+
+                $sql= "SELECT *
+                       FROM artikal
+                       INNER JOIN slika on artikal.id = slika.artikal_id
+                       WHERE artikal.id = $artikal_id;";
+                $result = $mysqli->query($sql) or die($mysqli->error);
+                $artikal = $result->fetch_accos();
+
+                $novi_artikal = array(
+                    'id' => $artikal['id'],
+                    'naziv' => $artikal['naziv'],
+                    'cena' => $artikal['cena'],
+                    'velicina' => $artikal['velicina'],
+                    'kolicina' => 1
+                );
+
+                if(isset($_SESSION['korpa'])) {
+                    $korpa = $_SESSION['korpa'];
+                    
+                    if(array_key_exists($artikal_id, $korpa)) {
+                      $korpa[$artikal_id]['kolicina'] += 1;
+                    } else {
+                      $korpa[$artikal_id] = $novi_artikal;
+                    }
+                  } else {
+                    $korpa = array($artikal_id => $novi_artikal);
+                  }
+                  $_SESSION['korpa'] = $korpa;
+
+            }
+
+
+        ?>
+    </div>
+
+
     <div class="popup "id="popup">
     <div class="scroll">
     <?php
@@ -118,31 +195,6 @@
              </div>";
         
         }
-        // echo " BROJ ELEMENTA U KORPI JE $count";
-        // var_dump($_SESSION['cart']);
-    
-        // foreach($_SESSION['cart'] as $key=>$value){
-        //     echo "$value";
-        // }
-        
-        // if(isset($_SESSION['cart'])){
-        //     $item_array_id = array_column($_SESSION['cart'],'artikal_id');
-        //     if(in_array($artikal_id,$item_array_id)){
-        //         echo "<script>alert('Artikal je vec dodat u korpu!')</script>";
-        //     }else{
-        //         $count=count($_SESSION['cart']);
-        //         $item_array = array(
-        //             'artikal_id'=> $artikal_id
-        //         );
-        //         $_SESSION['cart'][$count]= $item_array;
-        //     }
-        // }else{
-        //     $item_array = array(
-        //         'artikal_id'=> $artikal_id
-        //     );
-        // };
-        // $_SESSION['cart'][0]= $item_array;
-            // print_r($_SESSION);
        
         }
     ?>
