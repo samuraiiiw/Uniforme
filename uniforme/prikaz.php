@@ -2,7 +2,7 @@
 
     require_once "functions.php";
 
-    $title = "prikaz";
+    $title = "prikazzzzzzzzzzzzz";
     $table= 'artikal';
 ?>
 
